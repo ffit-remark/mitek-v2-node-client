@@ -1,0 +1,45 @@
+
+//- Modal dialog for setting session credentials
+div#frmSettings.modal.fade(role='dialog', tabindex='-1', aria-labelledby='myLabel')
+  div.modal-dialog.modal-sm(role='document')
+    div.modal-content
+
+      div.modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close', style='width:20px;')
+          span(aria-hidden='true') &times;
+        h4#myTitle.modal-title App Settings
+
+      div.modal-body
+
+        div.form-group
+          label(for='#env')
+            span.glyphicon.glyphicon-tree-conifer
+            |   Environment 
+          select#env.form-control(name='env', style='width:200px;')
+            each val in environments
+              option.env=val
+
+        //- Section for client-side input of OAuth id and secret
+        div.form-group
+          label(for='#acctname')
+            span.glyphicon.glyphicon-user
+            |   Tiden User Account:
+          input#acctname.form-control( 
+            type='text'
+          , name='acctname'
+          , required='true'
+          , value=(undefined===acctname ? '' : acctname)
+          )
+
+        div.form-group
+          label(for='#secret')
+            span.glyphicon.glyphicon-eye-open
+            |  Tiden Secret:
+          input#acctsecret.form-control(
+            type='text'
+          , name='acctsecret'
+          , required='true'
+          , value=(undefined===acctsecret ? '' : acctsecret) )
+
+      div.modal-footer
+        button#settingsok.btn.btn-default(type='button', data-dismiss='modal', disabled) OK

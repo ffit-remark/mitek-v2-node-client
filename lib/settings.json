@@ -1,0 +1,31 @@
+{
+    "comment": "The first item in the environments array is treated as default. The client app will always initialize to it",
+    "environments": [
+        {   "name": "sandbox",
+            "isDefault": true,
+            "creds": {
+                "id": "",
+                "secret": "" },
+            "authApi": {
+                "tokenUrl": "https://identity.us.sandbox.mitekcloud.com/connect/token",
+                "scopes": ["dossier.creator"] },
+            "tidenApi": {
+                "dossierUrl": "https://globalidentity.us.sandbox.mitekcloud.com/api/Verify/v2/dossier",
+                "documentUrl": ""
+            }
+        },
+        {   "name": "staging",
+            "isDefault": false,
+            "creds": {
+                "id": "mitek.prod.alf",
+                "secret": "nihbkjyytr5h" },
+            "authApi": {
+                "tokenUrl": "https://identity.us.staging.mitekcloud.com/connect/token",
+                "scopes": ["dossier.creator"] },
+            "tidenApi": {
+                "dossierUrl": "https://globalidentity.us.staging.mitekcloud.com/api/Verify/v2/dossier",
+                "documentUrl": ""
+            }
+        }
+    ]
+}
