@@ -1,0 +1,163 @@
+extends layout.pug
+
+block content
+  - var xparent = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+
+  nav.navbar.navbar-default
+    div.container-fluid
+      div.navbar-header
+        a.navbar-brand
+          img(src='https://cdn.glitch.com/e243c439-6e8d-4d32-a9c9-5196855a0494%2FMitek_logo_longer.png?1545248375237')
+
+  div.container
+    div.row
+      div.col-md-12
+
+        h1.text-center
+        div.tab-content
+          include settings.pug
+
+          div#home.tab-pane.fade.in.active
+            div.panel.panel-default
+
+              div.panel-heading
+                button.btn.btn-info.btn-sm(type='button', data-toggle='modal', data-target="#frmSettings", style='float:right;')
+                  span Settings
+                h2 Tiden API Client
+
+              div.panel-body
+                div.alert.alert-info.form-group.tokenvalidityinfo(style='box-sizing: border-box; line-height: 26px;')
+
+
+                div.form-group.well.hide
+                  h3 AuthTest - Test Authorization
+                  input#authtestbtn2.btn.btn-default(value='Test Auth Token')
+                  i.fa.fa-spinner.fa-spin.authtestbtn2Spinner.hide(style='font-size: 24px')
+                  div.authtestoutput2.hide.alert.alert-success
+
+                h3 Evidence
+                div.form-group.well
+                    div#page1.form-group(style='display: inline-block;')
+                      label(for='file1') Front Image
+                      input#file1(type='file', name='1')
+                      br
+                      img#display1.proxyDoc(height='300px' src=xparent)
+                      input#data1(type='hidden')
+
+                    div#page2.form-group.hide(style='display: inline-block;')
+                      label(for='file2') Back Image
+                      input#file2(type='file', name='2')
+                      br
+                      img#display2.proxyDoc(height='300px' src=xparent)
+                      input#data2(type='hidden')
+
+                    div#page3.form-group
+                      label(for='selfieFile') Selfie Image
+                      input#file3(type='file', name='3')
+                      br
+                      img#display3.proxySelfie(height='160px' src=xparent)
+                      input#data3(type='hidden')
+
+                h3 Configuration
+                div.form-group.requestElement.well
+                  h2.checkboxAll
+                    input#croppedAllCheck(type='checkbox')
+                    |    Cropped Response Images
+
+                  label.checkbox
+                    input.chkReturnImg(type='checkbox', value='CroppedDocument')
+                    | Document Front
+
+                  label.checkbox
+                    input.chkReturnImg(type='checkbox', value='CroppedPortrait')
+                    | Signature Portrait
+
+                  label.checkbox
+                    input.chkReturnImg(type='checkbox', value='CroppedSignature')
+                    | Signature
+
+                h3 Request JSON
+                div#requestJson.form-group.well(style='font-family: menlo, monospace; white-space: pre; margin: 1em 0; overflow: auto;')
+                br
+
+                input#evidenceSubmit.btn.btn-success(type='button', value='POST Dossier')
+                input#clearEvidenceButton.btn.btn-default(type='button', value='Clear Dossier')
+
+            //- BEGIN Results Panel code
+
+            div.panel.panel-default
+              div.panel-body
+                i.fa.fa-spinner.fa-spin.evidenceSubmitSpinner.hide(style='font-size: 24px;')
+                div#executionTime(style='box-sizing: border-box; line-height: 26px;')
+                div.help.text-right.hide * Execution time indicates server processing time.
+                
+                div.evidenceSubmitoutput.alert.hide
+                    
+                  p
+                    //- Input options
+                    label
+                      input#jsonStrict(name='jsonParser', value='0', type='radio')
+                      | Strict JSON
+                    br
+                    label
+                      input#jsonEval(name='jsonParser', value='1', type='radio', checked='checked')
+                      | Eval
+
+                    //- Output options
+                    label
+                      input#json2HTML(name='jsonOutStyle', value='1', type='radio', checked='checked')
+                      | HTML
+                    br
+                    label
+                      input#json2JSON(name='jsonOutStyle', value='0', type='radio')
+                      | JSON
+              
+                  h3 Options:
+              
+                  p#jsonOptionSet.HTML
+                    label
+                      input#jsonTrunc(type='checkbox', value='1', checked='checked')
+                      | Truncate long strings
+                    br
+                    label
+                      input#jsonDate(type='checkbox', value='1', checked='checked')
+                      | Detect encoded dates
+                    br
+                    label
+                      input#jsonData(type='checkbox', value='0')
+                      | Detect data structures
+                    br
+                    label
+                      input#jsonSpace(type='checkbox', value='0')
+                      | Preserve whitespace
+                    button#cmdRender(type='button') Render
+                    br
+                    a#cmdClear Clear
+                    br
+                    a#cmdTrim2JSON Trim non-JSON
+                    br
+
+                  h2(style='margin-top: 0px; font-size: 108%;')
+                    label(for='jsonInput') Input:
+                    small#jsonSize
+                  textarea#jsonInput(rows='10', cols='50', spellcheck='false')
+
+                div#tidenResultSection.hide.alert
+
+                  ul.nav.nav-tabs
+                    li.active
+                        a#response-structured(data-toggle='tab', href='#tab-home') Structured
+                    li
+                        a#response-json(data-toggle='tab', href='#tab-json') JSON Response
+
+                  div.tab-content
+                    div#tab-home.tab-pane.fade.in.active
+                      output#jsonValidateOutput(style='display: block;', for='jsonInput cmdValidate')
+                      code#jsonLocation
+                      output#jsonOutput(style='display: block;', for='jsonInput jsonStrict jsonEval json2HTML json2JSON jsonTrunc jsonDate jsonData jsonSpace')
+
+                    div#tab-json.tab-pane.fade
+                      div.jsonResult.hide
+                      div#json-container
+                      div.help Click on parent nodes to expand-collapse
+

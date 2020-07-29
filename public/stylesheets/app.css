@@ -1,0 +1,82 @@
+pre {outline: 1px solid #fff; padding: 5px; margin: 5px; }
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+.marginTopXL {margin-top: 20px;}
+
+table td {
+    padding: 5px;
+}
+
+#frontImageDataFile, #backImageDataFile {
+    cursor: pointer;
+}
+
+.help {
+    color: #999;
+    font-size: 10px;
+}
+.navbar-brand img {
+    height: 25px;
+    float: left;
+}
+.cropped-image {
+    max-width: 300px;
+    max-height: 300px;
+    margin: 20px;
+}
+
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.checkboxAll {
+    position: relative;
+}
+
+.checkbox {
+    padding-left:40px;
+    position: relative;
+}
+  
+.checkbox .checkboxAll input {
+   float:left
+}
+
+output {
+    display: block;
+    padding-top: .5em;
+    font-size: 13px;
+    line-height: 1.231
+}
+
+caption {
+    padding: 0;
+}
+
+#jsonLocation {
+    background-color: white;
+    font-size: 10pt;
+}
+
+.proxyDoc {
+  background: url(https://cdn.glitch.com/e243c439-6e8d-4d32-a9c9-5196855a0494%2FsampleImage.png?1545248384627);
+  background-size: 450px 300px;
+  width: 450px;
+}
+
+.proxySelfie {
+  background: url(https://cdn.glitch.com/e243c439-6e8d-4d32-a9c9-5196855a0494%2Fselfie.png?1545248391604) no-repeat;
+  width: 160px;
+  background-size: 160px 160px;
+}
